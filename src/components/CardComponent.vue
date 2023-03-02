@@ -1,12 +1,8 @@
 <script>
 import axios from 'axios';
-import CardComponent from './CardComponent.vue';
 
 export default {
-    name: 'MainComponent',
-    components: {
-        CardComponent
-    },
+    name: 'CardComponent',
 
     data() {
         return {
@@ -52,17 +48,14 @@ export default {
 </script>
 
 <template>
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h2>
-                    Here you can find some projects:
-                </h2>
-            </div>
-            <div class="col-12 d-flex flex-wrap justify-content-between">
-                <CardComponent />
-            </div>
-        </div>
+    <div class="card" v-for="project in projects">
+        <p class="p-2 m-3 car-title">
+            {{ project.title }}
+        </p>
+        <img class="card-image" :src="project.image" alt="">
+        <p>
+            {{ project.content }}
+        </p>
     </div>
 </template>
 
