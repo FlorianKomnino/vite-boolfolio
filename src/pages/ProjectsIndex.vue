@@ -1,9 +1,9 @@
 <script>
 import axios from 'axios';
-import CardComponent from './CardComponent.vue';
+import CardComponent from '../components/CardComponent.vue';
 
 export default {
-    name: 'MainComponent',
+    name: 'ProjectsIndex',
     components: {
         CardComponent
     },
