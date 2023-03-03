@@ -1,12 +1,10 @@
 <script>
-import MainComponent from './components/MainComponent.vue';
 import HeaderComponent from './components/HeaderComponent.vue';
 
 export default {
   name: 'App',
   components: {
     HeaderComponent,
-    MainComponent
   }
 }
 </script>
@@ -17,7 +15,6 @@ export default {
   </header>
 
   <main>
-    <MainComponent />
     <router-view></router-view>
   </main>
 </template>
