@@ -66,6 +66,4 @@ export default {
     </div>
 </template>
 
-<style lang="">
-    
-</style>
+<style lang="scss" scoped></style>
