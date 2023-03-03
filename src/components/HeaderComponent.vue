@@ -16,10 +16,14 @@ export default {
             </a>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <router-link :to="{ name: home }" class="nav-link active" aria-current="page">
+                        Home
+                    </router-link>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <router-link :to="{ name: ProjectsIndex }" class="nav-link active">
+                        Projects List
+                    </router-link>
                 </li>
             </ul>
         </div>
