@@ -8,22 +8,14 @@ export default {
 
     data() {
         return {
-            shownProject: [],
+            shownProject: null,
             apiUrl: 'http://127.0.0.1:8000/api/projects/',
             imgUrlAddress: 'http://127.0.0.1:8000/'
         }
     },
 
     props: {
-        imagePath: {
-            type: String,
-            required: true,
-        },
 
-        project: {
-            type: Object,
-            required: true,
-        }
     },
 
     methods: {
@@ -67,7 +59,8 @@ export default {
         <div class="row">
             <div class="col-12">
 
-                <div class="container">
+                <div v-if="shownProject == null" class="loader"></div>
+                <div v-else class="container">
                     <div class="row">
                         <div class="card col-3">
                             <p class="p-2 m-3 card-title">
@@ -83,7 +76,7 @@ export default {
                             <img v-if="!shownProject.image.startsWith('imgs/')" :src="shownProject.image"
                                 class="card-img-top" alt="projects image">
 
-                            <img v-else :src="imagePath + 'storage/' + shownProject.image" alt="projects image">
+                            <img v-else :src="imgUrlAddress + 'storage/' + shownProject.image" alt="projects image">
 
                             <p>
                                 {{ shownProject.content }}
@@ -96,4 +89,25 @@ export default {
     </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.loader {
+    border: 16px solid #f3f3f3;
+    /* Light grey */
+    border-top: 16px solid #3498db;
+    /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+</style>
