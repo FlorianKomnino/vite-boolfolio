@@ -17,10 +17,27 @@ export default {
     },
 
     methods: {
+        projectsCall() {
+            axios.get(this.apiUrl, {
+                params: {
 
+                }
+            })
+                .then((response) => {
+                    this.projects = response.data.results.data;
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+                .finally(function () {
+                    // always executed
+                });
+        },
     },
 
     created() {
+        this.projectsCall();
     },
 }
 </script>
@@ -37,8 +54,8 @@ export default {
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-12">
-                <CardComponent :imagePath="imgUrlAddress" />
+            <div class="col-3" v-for="project in projects">
+                <CardComponent :project="project" :imagePath="imgUrlAddress" class="col-3" />
             </div>
         </div>
     </div>
