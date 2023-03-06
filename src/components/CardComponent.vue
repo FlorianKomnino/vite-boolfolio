@@ -48,13 +48,15 @@ export default {
     <div class="container">
         <div class="row">
             <div class="card col-3" v-for="project in projects">
-                <p class="p-2 m-3 car-title">
+                <p class="p-2 m-3 card-title">
                     {{ project.title }}
                 </p>
 
-                <p v-for="singleTechnology in project.technologies" class="p-2 m-3 car-title">
-                    {{ singleTechnology.name }}
-                </p>
+                <ul>
+                    <li v-for="singleTechnology in project.technologies" class="d-inline">
+                        #{{ singleTechnology.name }}
+                    </li>
+                </ul>
 
                 <img v-if="!project.image.startsWith('imgs/')" :src="project.image" class="card-img-top"
                     alt="projects image">
