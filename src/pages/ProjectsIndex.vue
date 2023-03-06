@@ -20,7 +20,6 @@ export default {
         projectsCall() {
             axios.get(this.apiUrl, {
                 params: {
-
                 }
             })
                 .then((response) => {
@@ -54,11 +53,17 @@ export default {
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-12 d-flex flex-wrap">
-                <CardComponent v-for="project in projects" :project="project" :imagePath="imgUrlAddress" class="col-3" />
+            <div class="col-12 d-flex flex-wrap justify-content-between">
+                <CardComponent v-for="project in projects" :project="project" :imagePath="imgUrlAddress"
+                    class="col-3 singleProjectCard" />
             </div>
         </div>
     </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.singleProjectCard {
+    height: 700px;
+    border-bottom: 2rem;
+}
+</style>

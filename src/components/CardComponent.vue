@@ -35,7 +35,7 @@ export default {
 </script>
 
 <template>
-    <div>
+    <div class="card m-2">
         <p class="p-2 m-3 card-title">
             {{ project.title }}
         </p>
@@ -54,10 +54,25 @@ export default {
             {{ project.content }}
         </p>
 
-        <router-link :to="{ name: 'project', params: { slug: project.slug } }" :project="project" class="btn btn-primary">
+        <router-link :to="{ name: 'project', params: { slug: project.slug } }" :project="project"
+            class="btn btn-primary readMoreButton w-100">
             Read more...
         </router-link>
     </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.card {
+    position: relative;
+}
+
+.card-title {
+    height: 100px;
+}
+
+.readMoreButton {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+</style>
