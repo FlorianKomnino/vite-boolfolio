@@ -54,8 +54,8 @@ export default {
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-3" v-for="project in projects">
-                <CardComponent :project="project" :imagePath="imgUrlAddress" class="col-3" />
+            <div class="col-12 d-flex flex-wrap">
+                <CardComponent v-for="project in projects" :project="project" :imagePath="imgUrlAddress" class="col-3" />
             </div>
         </div>
     </div>

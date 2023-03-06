@@ -1,4 +1,5 @@
 <script>
+import axios from 'axios';
 
 export default {
     name: 'SingleProject',
@@ -7,7 +8,8 @@ export default {
 
     data() {
         return {
-            apiUrl: 'http://127.0.0.1:8000/api/projects',
+            shownProject: [],
+            apiUrl: 'http://127.0.0.1:8000/api/projects/',
             imgUrlAddress: 'http://127.0.0.1:8000/'
         }
     },
@@ -16,18 +18,23 @@ export default {
         imagePath: {
             type: String,
             required: true,
+        },
+
+        project: {
+            type: Object,
+            required: true,
         }
     },
 
     methods: {
         SingleProjectCall() {
-            axios.get(this.apiUrl + `/${this.$route.params.slug}`, {
+            axios.get(this.apiUrl + `${this.$route.params.slug}`, {
                 params: {
 
                 }
             })
                 .then((response) => {
-                    this.projects = response.data.results.data;
+                    this.shownProject = response.data.results;
                     console.log(response);
                 })
                 .catch(function (error) {
@@ -40,7 +47,8 @@ export default {
     },
 
     created() {
-        this.SingleProjectCall()
+        this.SingleProjectCall();
+        console.log(this.shownProject);
     },
 }
 </script>
@@ -63,22 +71,22 @@ export default {
                     <div class="row">
                         <div class="card col-3">
                             <p class="p-2 m-3 card-title">
-                                {{ project.title }}
+                                {{ shownProject.title }}
                             </p>
 
                             <ul>
-                                <li v-for="singleTechnology in project.technologies" class="d-inline">
+                                <li v-for="singleTechnology in shownProject.technologies" class="d-inline">
                                     #{{ singleTechnology.name }}
                                 </li>
                             </ul>
 
-                            <img v-if="!project.image.startsWith('imgs/')" :src="project.image" class="card-img-top"
-                                alt="projects image">
+                            <img v-if="!shownProject.image.startsWith('imgs/')" :src="shownProject.image"
+                                class="card-img-top" alt="projects image">
 
-                            <img v-else :src="this.imagePath + 'storage/' + project.image" alt="projects image">
+                            <img v-else :src="imagePath + 'storage/' + shownProject.image" alt="projects image">
 
                             <p>
-                                {{ project.content }}
+                                {{ shownProject.content }}
                             </p>
                         </div>
                     </div>
