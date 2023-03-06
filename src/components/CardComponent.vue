@@ -11,6 +11,13 @@ export default {
         }
     },
 
+    props: {
+        imagePath: {
+            type: String,
+            required: true,
+        }
+    },
+
     methods: {
         projectsCall() {
             axios.get(this.apiUrl, {
@@ -19,7 +26,7 @@ export default {
                 }
             })
                 .then((response) => {
-                    this.projects = response.data.results;
+                    this.projects = response.data.results.data;
                     console.log(response);
                 })
                 .catch(function (error) {
@@ -29,16 +36,6 @@ export default {
                     // always executed
                 });
         },
-
-        getImages(imageUrlInPublicFolder) {
-            let composedString = `${imageUrlInPublicFolder}`;
-
-            return composedString;
-        },
-
-        getImagesFolder() {
-            return 'img';
-        }
     },
 
     created() {
@@ -48,14 +45,27 @@ export default {
 </script>
 
 <template>
-    <div class="card" v-for="project in projects">
-        <p class="p-2 m-3 car-title">
-            {{ project.title }}
-        </p>
-        <img class="card-image" :src="project.image" alt="">
-        <p>
-            {{ project.content }}
-        </p>
+    <div class="container">
+        <div class="row">
+            <div class="card col-3" v-for="project in projects">
+                <p class="p-2 m-3 car-title">
+                    {{ project.title }}
+                </p>
+
+                <p v-for="singleTechnology in project.technologies" class="p-2 m-3 car-title">
+                    {{ singleTechnology.name }}
+                </p>
+
+                <img v-if="!project.image.startsWith('imgs/')" :src="project.image" class="card-img-top"
+                    alt="projects image">
+
+                <img v-else :src="imagePath + 'storage/' + project.image" alt="projects image">
+
+                <p>
+                    {{ project.content }}
+                </p>
+            </div>
+        </div>
     </div>
 </template>
 
