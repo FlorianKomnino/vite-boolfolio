@@ -2,7 +2,7 @@
 export default {
     data() {
         return {
-
+            linksArray: ['home', 'index', 'aboutUs']
         }
     },
 }
@@ -15,19 +15,9 @@ export default {
                 Navbar
             </a>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <router-link :to="{ name: 'home' }" class="nav-link" :class="this.$route.name === 'home' ? 'active': ''" aria-current="page">
-                        Home
-                    </router-link>
-                </li>
-                <li class="nav-item">
-                    <router-link :to="{ name: 'index' }" class="nav-link" :class="this.$route.name === 'index' ? 'active': ''" aria-current="page">
-                        Projects List
-                    </router-link>
-                </li>
-                <li class="nav-item">
-                    <router-link :to="{ name: 'aboutUs' }" class="nav-link" :class="this.$route.name === 'aboutUs' ? 'active': ''" aria-current="page">
-                        About Us
+                <li class="nav-item" v-for="link in linksArray">
+                    <router-link :to="{ name: link }" class="nav-link" :class="this.$route.name === link ? 'active': ''" aria-current="page">
+                        {{link}}
                     </router-link>
                 </li>
             </ul>
@@ -35,4 +25,8 @@ export default {
     </nav>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+li {
+    text-transform: capitalize;
+}
+</style>
