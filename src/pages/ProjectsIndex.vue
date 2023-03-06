@@ -20,6 +20,7 @@ export default {
         projectsCall() {
             axios.get(this.apiUrl, {
                 params: {
+                    api_token: 'Mwqd30IQk2u2zkUZlDBanxFxuQLzYxp4rmUZqu7V8hHhhKrP6YYxH0ANPWVzY9VfzhD6G4ayPDH99lUee8dg2BJQ',
                 }
             })
                 .then((response) => {
